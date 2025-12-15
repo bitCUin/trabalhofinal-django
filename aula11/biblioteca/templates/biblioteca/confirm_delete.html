@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Deletar Livro - Biblioteca{% endblock %}
+
+{% block content %}
+    <div style="max-width: 500px; margin: 50px auto; background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 30px;">
+        <h2 style="color: #856404; margin-bottom: 20px;">⚠️ Confirmar Exclusão</h2>
+        
+        <div style="background: white; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+            <p style="margin: 10px 0; color: #333;">
+                <strong>Título:</strong> {{ livro.titulo }}
+            </p>
+            <p style="margin: 10px 0; color: #333;">
+                <strong>Autor:</strong> {{ livro.autor.nome }}
+            </p>
+            <p style="margin: 10px 0; color: #333;">
+                <strong>Ano:</strong> {{ livro.ano_publicacao }}
+            </p>
+        </div>
+        
+        <p style="color: #856404; font-weight: 600; margin-bottom: 20px;">
+            Tem certeza que deseja apagar este livro? Esta ação não pode ser desfeita.
+        </p>
+        
+        <form method="post" style="display: flex; gap: 10px;">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger" style="flex: 1;">Sim, Deletar</button>
+            <a href="{% url 'biblioteca:lista_livros' %}" class="btn-secondary" style="flex: 1; padding: 12px 30px; text-align: center; display: flex; align-items: center; justify-content: center; text-decoration: none;">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

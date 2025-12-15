@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }} - Biblioteca{% endblock %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 30px auto;">
+        <h2 style="color: #667eea; margin-bottom: 30px;">{{ titulo }}</h2>
+        
+        <form method="post" novalidate>
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_titulo">{{ form.titulo.label }}</label>
+                {{ form.titulo }}
+                {% if form.titulo.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.titulo.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_ano_publicacao">{{ form.ano_publicacao.label }}</label>
+                {{ form.ano_publicacao }}
+                {% if form.ano_publicacao.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.ano_publicacao.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_autor">{{ form.autor.label }}</label>
+                {{ form.autor }}
+                {% if form.autor.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.autor.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            {% if form.non_field_errors %}
+                <div class="errorlist">
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <div class="btn-group">
+                <button type="submit">{{ titulo }}</button>
+                <a href="{% url 'biblioteca:lista_livros' %}" class="btn-secondary" style="padding: 12px 30px; text-align: center; display: flex; align-items: center; justify-content: center;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

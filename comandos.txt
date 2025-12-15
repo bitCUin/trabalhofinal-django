@@ -1,0 +1,15 @@
+python -m venv .venv
+# F1: Criar ambiente -> Enter -> Enter -> Enter
+.venv\Scripts\activate.ps1
+
+pip install django-cors-headers djangorestframework 
+pip freeze > requirements.txt
+
+django-admin startproject aula11
+cd aula11
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py createsuperuser
+
+py manage.py startapp blog
